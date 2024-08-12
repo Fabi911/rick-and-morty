@@ -29,6 +29,7 @@ const Card = styled.div`
   padding: 1rem;
   width: 20vw;
   min-width: 320px;
+  height: 640px;
   display: flex;
   flex-direction: column;
   align-items: center;
