@@ -1,13 +1,33 @@
 import "./App.css";
 import Gallery from "./component/ Gallery/Gallery.tsx";
-import Data from "./db/data.ts";
 import { RickAndMorty } from "./types/RickAndMorty.ts";
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function App() {
-  const data: RickAndMorty[] = Data;
-  const [characterData, setCharacterData] = useState<RickAndMorty[]>(data);
+  const [data, setData] = useState<RickAndMorty[]>([]);
+  const [characterData, setCharacterData] = useState<RickAndMorty[]>([]);
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  function loadData() {
+    axios
+      .get("https://rickandmortyapi.com/api/character")
+      .then((response) => {
+        setData(response.data.results);
+        setCharacterData(response.data.results);
+        return response.data;
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error.message);
+      })
+      .finally(() => {
+        console.log("Data fetched!");
+      });
+  }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filteredCharacters = data.filter((character) =>
