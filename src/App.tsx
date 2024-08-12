@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import Gallery from "./component/ Gallery/Gallery.tsx";
+import Data from "./db/data.ts";
+import { RickAndMorty } from "./types/RickAndMorty.ts";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const data: [RickAndMorty] = Data;
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Box>
+      <h1>Rick & Morty Gallery</h1>
+      <input type="text" placeholder="Search..." />
+      <Gallery data={data} />
+    </Box>
+  );
 }
 
-export default App
+//Styles
+
+import styled from "styled-components";
+const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem;
+`;
