@@ -1,11 +1,11 @@
 import CharacterCard from "../CharacterCard/CharacterCard.tsx";
 import { RickAndMorty } from "../../types/RickAndMorty.ts";
 
-export default function Gallery({ data }: { data: [RickAndMorty] }) {
+export default function Gallery({ characterData }: { data: [RickAndMorty] }) {
   return (
     <GalleryBox>
-      {data &&
-        data.map((character: RickAndMorty) => (
+      {characterData &&
+        characterData.map((character: RickAndMorty) => (
           <CharacterCard key={character.id} character={character} />
         ))}
     </GalleryBox>
@@ -21,11 +21,4 @@ const GalleryBox = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1rem;
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `;
